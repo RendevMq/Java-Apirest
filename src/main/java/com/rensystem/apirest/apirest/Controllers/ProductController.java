@@ -17,12 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.rensystem.apirest.apirest.Entities.Product;
 
-//JPA trae todas las herramientas para poder conectarme a una base de datos
 
-//direcciones, urls para que las personas puedan consumir la informacion
 @RestController
 @RequestMapping("/product")
-//Con esas 2 lineas ya tenemos disponible /productos
 
 public class ProductController {
 
@@ -33,10 +30,10 @@ public class ProductController {
     //TRAEMOS INFORMACION
     @GetMapping
     public List<Product> getAllProducts(){
-        return productRepository.findAll(); //Traemos todos los productos del repositorio
+        return productRepository.findAll(); 
     }
 
-    @GetMapping("/{id}") //reciba en la barra id
+    @GetMapping("/{id}") 
     public Product getProductByID(@PathVariable Long id){
         return productRepository.findById(id)
         .orElseThrow(()-> new RuntimeException("No se encontro el producto con el ID: " + id));
