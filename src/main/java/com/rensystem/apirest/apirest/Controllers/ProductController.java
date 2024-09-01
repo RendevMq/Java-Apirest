@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.rensystem.apirest.apirest.Entities.Product;
 
-
 @RestController
 @RequestMapping("/product")
+//Con esas 2 lineas ya tenemos disponible /productos
 
 public class ProductController {
 
@@ -30,10 +30,10 @@ public class ProductController {
     //TRAEMOS INFORMACION
     @GetMapping
     public List<Product> getAllProducts(){
-        return productRepository.findAll(); 
+        return productRepository.findAll(); //Traemos todos los productos del repositorio
     }
 
-    @GetMapping("/{id}") 
+    @GetMapping("/{id}") //reciba en la barra id
     public Product getProductByID(@PathVariable Long id){
         return productRepository.findById(id)
         .orElseThrow(()-> new RuntimeException("No se encontro el producto con el ID: " + id));
