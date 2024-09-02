@@ -62,12 +62,7 @@ export const updateProductOrder = async (products) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(
-      products.map((product) => ({
-        id: product.id,
-        orden: product.orden,
-      }))
-    ),
+    body: JSON.stringify(products),
   });
   if (!response.ok) {
     throw new Error("Failed to update product order");

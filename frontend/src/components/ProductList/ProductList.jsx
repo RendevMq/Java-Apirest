@@ -18,22 +18,15 @@ const ProductList = ({
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
 
-    // Pass the reordered items to the parent component
-    onReorderProducts(items);
-
-    // Update the order in the backend
+    // Pass the reordered items to the backend
     try {
-      await fetch(`${API_BASE_URL}/product/order`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(
-          items.map((item, index) => ({ ...item, orden: index }))
-        ),
-      });
+      await updateProductOrder(
+        items.map((item, index) => ({ ...item, orden: index + 1 }))
+      );
+      // Optionally, update the local state here if needed
     } catch (error) {
-      console.error("Failed to update product order", error);
+      console.error("Failed to update product order:", error);
+      // Handle error if necessary
     }
   };
 
