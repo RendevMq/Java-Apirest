@@ -16,9 +16,34 @@
     font-size: 1.5rem;
     font-weight: bold;
     display: flex;
-    justify-content: center;
-    gap: 20px;
+    align-items: center;
+    gap: 10px;
   }
+
+.sourceCodeBtn {
+  display: inline-flex;
+  align-items: center;
+  background-color: #333; /* Fondo oscuro */
+  color: #fff; /* Texto blanco */
+  border: 2px solid #333; /* Borde oscuro */
+  border-radius: 5px;
+  padding: 8px 12px;
+  text-decoration: none; /* Quitar subrayado del enlace */
+  transition: background-color 0.3s, border-color 0.3s, transform 0.3s;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.sourceCodeBtn:hover {
+  background-color: #fff; /* Fondo blanco en hover */
+  color: #333; /* Texto oscuro en hover */
+  border-color: #fff; /* Borde blanco en hover */
+  transform: scale(1.05); /* Efecto de aumento en hover */
+}
+
+.buttonText {
+  margin-left: 8px; /* Espacio entre el ícono y el texto */
+}
   
   .themeSwitch {
     position: relative;

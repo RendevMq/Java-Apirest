@@ -6,14 +6,15 @@ const Navbar = ({ theme, toggleTheme }) => {
     <nav className={styles.navbar}>
       <div className={styles.logo}>
         RENDEVMQ
-        <button
+        <a
           href="https://github.com/RendevMq"
           target="_blank"
-          className="fork-btn-inner"
+          rel="noopener noreferrer"
+          className={styles.sourceCodeBtn}
         >
-          <AiFillGithub style={{ fontSize: "1.2em" }} />{" "}
-          {/* <AiFillStar style={{ fontSize: "1.1em" }} /> */}
-        </button>
+          <AiFillGithub style={{ fontSize: "1.2em" }} />
+          <span className={styles.buttonText}>Source Code</span>
+        </a>
       </div>
       <div className={styles.themeSwitch}>
         <input
