@@ -37,8 +37,7 @@ public class ProductController {
 
     @GetMapping
     public ResponseEntity<List<ProductDTO>> getAllProducts() {
-        //List<Product> products = productRepository.findAll();
-        List<Product> products = productRepository.findAllByOrderByOrdenAsc();
+        List<Product> products = productRepository.findAll();
         List<ProductDTO> productDTOs = products.stream().map(this::convertToDTO).collect(Collectors.toList());
         return ResponseEntity.ok(productDTOs);
     }
@@ -80,20 +79,6 @@ public class ProductController {
     }
 
     @PutMapping("/order")
-    public ResponseEntity<?> updateProductOrder(@RequestBody List<Long> productIds) {
-        List<Product> products = productRepository.findAllById(productIds);
-
-        for (int i = 0; i < products.size(); i++) {
-            Product product = products.get(i);
-            product.setOrden(i); // Asigna el nuevo orden basado en la posición en la lista
-        }
-
-        productRepository.saveAll(products);
-
-        return ResponseEntity.ok().build();
-    }
-
-    /*@PutMapping("/order")
     public ResponseEntity<List<ProductDTO>> updateProductOrder(@RequestBody List<ProductDTO> productDTOs) {
         List<Product> products = productDTOs.stream()
                 .map(this::convertToEntity)
@@ -106,7 +91,7 @@ public class ProductController {
                 .collect(Collectors.toList());
 
         return ResponseEntity.ok(updatedProducts);
-    }*/
+    }
 
 
 }
