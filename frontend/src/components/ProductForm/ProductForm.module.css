@@ -4,18 +4,16 @@
   gap: 1.5rem;
   max-width: 400px;
   margin: 0 auto;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .formGroup {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-}
-
-.label {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--text-color);
 }
 
 .input {
@@ -25,21 +23,24 @@
   border-radius: 0.25rem;
   background-color: var(--background-color);
   color: var(--text-color);
-  transition: border-color var(--transition-duration);
+  transition: border-color var(--transition-duration), box-shadow var(--transition-duration);
 }
 
 .input:focus {
   outline: none;
   border-color: var(--primary-color);
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
 }
 
 .inputError {
-  border-color: #dc3545;
+  border-color: var(--error-color);
+  background-color: #ffe6e6;
 }
 
 .error {
   font-size: 0.875rem;
-  color: #dc3545;
+  color: var(--error-color);
+  padding-left: 0.25rem;
 }
 
 .button {
@@ -50,9 +51,10 @@
   border: none;
   border-radius: 0.25rem;
   cursor: pointer;
-  transition: background-color var(--transition-duration);
+  transition: background-color var(--transition-duration), transform var(--transition-duration);
 }
 
 .button:hover {
-  background-color: #0056b3;
+  background-color: #388e3c;
+  transform: translateY(-2px);
 }

@@ -13,7 +13,7 @@ import "./variables.css";
 import styles from "./App.module.css";
 
 const App = () => {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dark");
   const [products, setProducts] = useState([]);
   const [editingProduct, setEditingProduct] = useState(null);
 
