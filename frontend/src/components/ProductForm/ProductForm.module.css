@@ -34,7 +34,7 @@
 
 .inputError {
   border-color: var(--error-color);
-  background-color: #ffe6e6;
+  /* background-color: #ffe6e6; */
 }
 
 .error {
