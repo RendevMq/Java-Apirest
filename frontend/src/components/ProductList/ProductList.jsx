@@ -3,6 +3,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { GripVertical } from "lucide-react";
 import styles from "./ProductList.module.css";
 import axios from "axios";
+import { updateProductOrder } from "../../services/api";
 const API_BASE_URL = "https://javaapirestcrudrailway-production.up.railway.app";
 
 const ProductList = ({
