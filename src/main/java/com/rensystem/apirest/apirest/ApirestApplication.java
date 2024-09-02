@@ -20,14 +20,14 @@ public class ApirestApplication {
     }
 
     @Bean
-    public WebMvcConfigurer corsConfigurer() {
+    public WebMvcConfigurer corsConfigurer(Dotenv dotenv) {
         //String url = dotenv.get("SPRING_URL"); // Leer la variable del archivo .env
-
+String url = dotenv.get("SPRING_URL");
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("https://java-apirest-crud-railway.vercel.app")
+                        .allowedOrigins(url)
                         .allowedMethods("*")
                         .allowedHeaders("*");
             }
