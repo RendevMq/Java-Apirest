@@ -20,8 +20,8 @@ public class ApirestApplication {
     }
 
     @Bean
-    public WebMvcConfigurer corsConfigurer(Dotenv dotenv) {
-        String url = dotenv.get("SPRING_URL"); // Leer la variable del archivo .env
+    public WebMvcConfigurer corsConfigurer() {
+        //String url = dotenv.get("SPRING_URL"); // Leer la variable del archivo .env
 
         return new WebMvcConfigurer() {
             @Override
