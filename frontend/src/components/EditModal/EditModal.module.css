@@ -18,6 +18,11 @@
     width: 90%;
     max-width: 500px;
   }
+
+  .modalContent h2 {
+    text-align: center;
+    columns: black;
+  }
   
   .input {
     display: block;

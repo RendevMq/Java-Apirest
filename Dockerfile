@@ -1,7 +1,8 @@
-# Hacemos una imagen de JAVA21 , dado que Railway no es compatible
-# con este. Entonces hacemos la imagen para que luego se pueda desplegar
-# en Docker dentro de Railway, de esta forma Railway solo nos sirve como plataforma
-# y nosotros desplegamos la imagen java.
+# Dado que Railway no es compatible con Java 21, creamos una imagen Docker personalizada 
+# con Java 21 para poder desplegarla en Railway. Esto nos permite utilizar Railway solo 
+# como plataforma de hosting, mientras gestionamos la compatibilidad de Java mediante 
+# nuestra propia imagen Docker.
+
 
 FROM eclipse-temurin:21-jdk as build
 
