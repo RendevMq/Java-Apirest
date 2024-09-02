@@ -2,6 +2,7 @@ import React from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { GripVertical } from "lucide-react";
 import styles from "./ProductList.module.css";
+import axios from "axios";
 
 const ProductList = ({
   products,
