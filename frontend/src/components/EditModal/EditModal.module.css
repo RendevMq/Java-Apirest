@@ -21,7 +21,7 @@
 
   .modalContent h2 {
     text-align: center;
-    columns: black;
+    columns: black  !important
   }
   
   .input {
