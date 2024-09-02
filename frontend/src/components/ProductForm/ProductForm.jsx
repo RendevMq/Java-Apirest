@@ -7,9 +7,6 @@ const ProductForm = ({ onAddProduct }) => {
   const [errors, setErrors] = useState({ name: "", price: "" });
 
   const validateName = (name) => {
-    if (!name.trimStart()) {
-      return "Name cannot start with a space";
-    }
     if (name.trim().length < 4) {
       return "Name must be at least 4 characters";
     }
@@ -18,11 +15,14 @@ const ProductForm = ({ onAddProduct }) => {
 
   const handleNameChange = (e) => {
     const value = e.target.value;
-    setName(value);
-    setErrors((prevErrors) => ({
-      ...prevErrors,
-      name: validateName(value),
-    }));
+    // No permitir que se escriban espacios al inicio
+    if (value === "" || value[0] !== " ") {
+      setName(value);
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        name: validateName(value),
+      }));
+    }
   };
 
   const handlePriceChange = (e) => {
