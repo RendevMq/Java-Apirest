@@ -9,17 +9,22 @@ const ProductList = ({
   onDeleteProduct,
   onReorderProducts,
 }) => {
-  const handleDragEnd = (result) => {
-    // Check if there's a valid destination
+  const handleDragEnd = async (result) => {
     if (!result.destination) return;
 
-    // Create a copy of the items and reorder them
     const items = Array.from(products);
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
 
-    // Pass the reordered items to the parent component
+    // Actualizar el estado local con el nuevo orden
     onReorderProducts(items);
+
+    // Enviar el nuevo orden al servidor
+    const orderedProducts = items.map((item, index) => ({
+      ...item,
+      orden: index,
+    }));
+    await updateProductOrder(orderedProducts);
   };
 
   console.log("Products:", products);

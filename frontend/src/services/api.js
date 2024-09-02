@@ -55,3 +55,17 @@ export const deleteProduct = async (id) => {
   }
   return response.json();
 };
+
+export const updateProductOrder = async (products) => {
+  const response = await fetch(`${API_BASE_URL}/product/order`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(products),
+  });
+  if (!response.ok) {
+    throw new Error("Failed to update product order");
+  }
+  return response.json();
+};

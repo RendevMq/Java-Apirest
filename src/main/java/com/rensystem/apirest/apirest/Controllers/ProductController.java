@@ -77,4 +77,21 @@ public class ProductController {
 
         return ResponseEntity.ok().body("{\"message\": \"El producto con el ID: " + id + " fue eliminado correctamente\"}");
     }
+
+    @PutMapping("/order")
+    public ResponseEntity<List<ProductDTO>> updateProductOrder(@RequestBody List<ProductDTO> productDTOs) {
+        List<Product> products = productDTOs.stream()
+                .map(this::convertToEntity)
+                .collect(Collectors.toList());
+
+        productRepository.saveAll(products);
+
+        List<ProductDTO> updatedProducts = products.stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(updatedProducts);
+    }
+
+
 }
