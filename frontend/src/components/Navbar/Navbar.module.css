@@ -61,3 +61,21 @@
   .toggleCheckbox:checked + .toggleLabel:before {
     transform: translateX(26px);
   }
+  .fork-btn-inner {
+    line-height: 1.4em !important;
+    background-color: #122142c1 !important;
+    padding: 0.25rem 1.1rem !important;
+    vertical-align: middle !important;
+    text-align: center !important;
+    border-color: #ffffff9b !important;
+  }
+  
+  .fork-btn-inner:hover {
+    transform: translateY(-2px) !important;
+    background-color: #051b49 !important;
+    border-color: #ffffff !important;
+  }
+  .fork-btn-inner::after {
+    display: none !important;
+  }
+  
