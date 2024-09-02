@@ -15,7 +15,7 @@ public class Product {
     private Long id;
     private String nombre;
     private double precio;
-    private int orden; // Campo para el orden
+    private Long orden; // Asegúrate de que el tipo de dato coincida con el tipo en la base de datos
 
     public Long getId() {
         return id;
@@ -41,11 +41,11 @@ public class Product {
         this.precio = precio;
     }
 
-    public int getOrden() {
+    public Long getOrden() {
         return orden;
     }
 
-    public void setOrden(int orden) {
+    public void setOrden(Long orden) {
         this.orden = orden;
     }
 }
