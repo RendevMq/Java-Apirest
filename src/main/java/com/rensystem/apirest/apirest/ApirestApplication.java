@@ -27,7 +27,7 @@ public class ApirestApplication {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins(url)
+                        .allowedOrigins("https://java-apirest-crud-railway.vercel.app")
                         .allowedMethods("*")
                         .allowedHeaders("*");
             }
