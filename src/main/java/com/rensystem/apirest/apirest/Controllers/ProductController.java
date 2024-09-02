@@ -79,7 +79,7 @@ public class ProductController {
     @PostMapping("/update-order")
     @Transactional
     public ResponseEntity<Void> updateProductOrder(@RequestBody List<ProductDTO> productDTOs) {
-        for (int i = 0; i < productDTOs.size(); i++) {
+        for (int i = 1; i <= productDTOs.size(); i++) {
             ProductDTO dto = productDTOs.get(i);
             Product product = productRepository.findById(dto.getId())
                     .orElseThrow(() -> new RuntimeException("Product not found with id: " + dto.getId()));
