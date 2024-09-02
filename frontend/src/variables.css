@@ -6,6 +6,7 @@
     --text-color-light: #333333;
     --text-color-dark: #f0f0f0;
     --transition-duration: 0.3s;
+    --error-color: #dc3545;
   }
   
   body {
