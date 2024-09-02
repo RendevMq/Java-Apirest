@@ -79,19 +79,14 @@ public class ProductController {
     }
 
     @PutMapping("/order")
-    public ResponseEntity<List<ProductDTO>> updateProductOrder(@RequestBody List<ProductDTO> productDTOs) {
-        List<Product> products = productDTOs.stream()
-                .map(this::convertToEntity)
-                .collect(Collectors.toList());
-
-        productRepository.saveAll(products);
-
-        List<ProductDTO> updatedProducts = products.stream()
-                .map(this::convertToDTO)
-                .collect(Collectors.toList());
-
-        return ResponseEntity.ok(updatedProducts);
+    public ResponseEntity<?> updateProductOrder(@RequestBody List<ProductDTO> productDTOs) {
+        for (int i = 0; i < productDTOs.size(); i++) {
+            ProductDTO dto = productDTOs.get(i);
+            Product product = productRepository.findById(dto.getId())
+                    .orElseThrow(() -> new RuntimeException("No se encontró el producto con el ID: " + dto.getId()));
+            product.setOrden(i);
+            productRepository.save(product);
+        }
+        return ResponseEntity.ok().body("{\"message\": \"Orden de productos actualizado correctamente\"}");
     }
-
-
 }
