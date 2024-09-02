@@ -15,16 +15,13 @@ const ProductForm = ({ onAddProduct }) => {
 
   const handleNameChange = (e) => {
     const value = e.target.value;
-    setName(value);
-    setErrors((prevErrors) => ({
-      ...prevErrors,
-      name: validateName(value),
-    }));
-  };
-
-  const handleNameKeyDown = (e) => {
-    if (e.key === " " && name.length === 0) {
-      e.preventDefault(); // Evita que se ingrese un espacio al inicio
+    // No permitir que se escriban espacios al inicio
+    if (value === "" || value[0] !== " ") {
+      setName(value);
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        name: validateName(value),
+      }));
     }
   };
 
@@ -58,7 +55,6 @@ const ProductForm = ({ onAddProduct }) => {
           type="text"
           value={name}
           onChange={handleNameChange}
-          onKeyDown={handleNameKeyDown}
           placeholder="Product name"
           className={`${styles.input} ${errors.name ? styles.inputError : ""}`}
         />
