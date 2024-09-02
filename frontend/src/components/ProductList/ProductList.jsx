@@ -12,19 +12,19 @@ const ProductList = ({
   const handleDragEnd = async (result) => {
     if (!result.destination) return;
 
-    // Crear una copia de los elementos y reordenarlos
     const items = Array.from(products);
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
 
-    // Actualizar el estado local
+    // Update the local state
     onReorderProducts(items);
 
-    // Actualizar el orden en el backend
+    // Update the order in the backend
     try {
-      await updateProductOrder(items);
+      await axios.post("/product/update-order", items);
     } catch (error) {
       console.error("Failed to update product order", error);
+      // Optionally, revert the local state if the API call fails
     }
   };
 

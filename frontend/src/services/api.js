@@ -1,5 +1,5 @@
 // const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-
+import axios from "axios";
 const API_BASE_URL = "https://javaapirestcrudrailway-production.up.railway.app";
 
 export const getAllProducts = async () => {
@@ -57,15 +57,6 @@ export const deleteProduct = async (id) => {
 };
 
 export const updateProductOrder = async (products) => {
-  const response = await fetch(`${API_BASE_URL}/products/update-order`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(products),
-  });
-  if (!response.ok) {
-    throw new Error("Failed to update product order");
-  }
-  return response.json();
+  const response = await axios.post("/product/update-order", products);
+  return response.data;
 };

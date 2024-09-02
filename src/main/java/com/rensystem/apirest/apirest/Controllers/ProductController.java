@@ -3,6 +3,7 @@ package com.rensystem.apirest.apirest.Controllers;
 import com.rensystem.apirest.apirest.Entities.Product;
 import com.rensystem.apirest.apirest.Repositories.ProductRepository;
 import com.rensystem.apirest.apirest.dto.ProductDTO;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -76,14 +77,15 @@ public class ProductController {
     }
 
     @PostMapping("/update-order")
+    @Transactional
     public ResponseEntity<Void> updateProductOrder(@RequestBody List<ProductDTO> productDTOs) {
-        List<Product> products = productDTOs.stream()
-                .map(this::convertToEntity)
-                .collect(Collectors.toList());
-
-        // Guardar los productos con los nuevos órdenes
-        productRepository.saveAll(products);
-
+        for (int i = 0; i < productDTOs.size(); i++) {
+            ProductDTO dto = productDTOs.get(i);
+            Product product = productRepository.findById(dto.getId())
+                    .orElseThrow(() -> new RuntimeException("Product not found with id: " + dto.getId()));
+            product.setOrden((long) i);
+            productRepository.save(product);
+        }
         return ResponseEntity.ok().build();
     }
 
