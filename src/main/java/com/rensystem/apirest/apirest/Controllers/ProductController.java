@@ -75,19 +75,16 @@ public class ProductController {
         return ResponseEntity.ok(convertToDTO(updatedProduct));
     }
 
-    @PutMapping("/order")
-    public ResponseEntity<List<ProductDTO>> updateProductOrder(@RequestBody List<ProductDTO> productDTOs) {
+    @PostMapping("/update-order")
+    public ResponseEntity<Void> updateProductOrder(@RequestBody List<ProductDTO> productDTOs) {
         List<Product> products = productDTOs.stream()
                 .map(this::convertToEntity)
                 .collect(Collectors.toList());
 
+        // Guardar los productos con los nuevos órdenes
         productRepository.saveAll(products);
 
-        List<ProductDTO> updatedProducts = products.stream()
-                .map(this::convertToDTO)
-                .collect(Collectors.toList());
-
-        return ResponseEntity.ok(updatedProducts);
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{id}")
@@ -99,4 +96,7 @@ public class ProductController {
 
         return ResponseEntity.ok().body("{\"message\": \"El producto con el ID: " + id + " fue eliminado correctamente\"}");
     }
+
+
+
 }

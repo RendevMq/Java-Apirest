@@ -57,8 +57,8 @@ export const deleteProduct = async (id) => {
 };
 
 export const updateProductOrder = async (products) => {
-  const response = await fetch(`${API_BASE_URL}/product/order`, {
-    method: "PUT",
+  const response = await fetch(`${API_BASE_URL}/products/update-order`, {
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
     },

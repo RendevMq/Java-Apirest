@@ -10,23 +10,21 @@ const ProductList = ({
   onReorderProducts,
 }) => {
   const handleDragEnd = async (result) => {
-    // Check if there's a valid destination
     if (!result.destination) return;
 
-    // Create a copy of the items and reorder them
+    // Crear una copia de los elementos y reordenarlos
     const items = Array.from(products);
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
 
-    // Pass the reordered items to the backend
+    // Actualizar el estado local
+    onReorderProducts(items);
+
+    // Actualizar el orden en el backend
     try {
-      await updateProductOrder(
-        items.map((item, index) => ({ ...item, orden: index + 1 }))
-      );
-      // Optionally, update the local state here if needed
+      await updateProductOrder(items);
     } catch (error) {
-      console.error("Failed to update product order:", error);
-      // Handle error if necessary
+      console.error("Failed to update product order", error);
     }
   };
 
