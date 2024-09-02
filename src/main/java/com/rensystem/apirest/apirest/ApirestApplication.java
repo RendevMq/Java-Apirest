@@ -15,21 +15,14 @@ public class ApirestApplication {
     }
 
     @Bean
-    public Dotenv dotenv() {
-        return Dotenv.load();
-    }
+    public WebMvcConfigurer corsConfigurer() {
 
-    @Bean
-    public WebMvcConfigurer corsConfigurer(Dotenv dotenv) {
-        //String url = dotenv.get("SPRING_URL"); // Leer la variable del archivo .env
-String url = dotenv.get("SPRING_URL");
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**")
+                registry.addMapping("https://java-apirest-crud-railway.vercel.app")
                         .allowedOrigins(url)
-                        .allowedMethods("*")
-                        .allowedHeaders("*");
+                        .allowedMethods("*");
             }
         };
     }
