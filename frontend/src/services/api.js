@@ -1,13 +1,12 @@
-// const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 import axios from "axios";
-const API_BASE_URL = "https://javaapirestcrudrailway-production.up.railway.app";
 
 export const getAllProducts = async () => {
   const response = await fetch(`${API_BASE_URL}/product`);
   if (!response.ok) {
     throw new Error("Failed to fetch products");
   }
-  return response.json(); // Los productos deberían ya estar en el orden correcto gracias a la lógica en el backend
+  return response.json();
 };
 
 export const getProductById = async (id) => {
@@ -55,8 +54,6 @@ export const deleteProduct = async (id) => {
   }
   return response.json();
 };
-
-// ... other API methods
 
 export const updateProductOrder = async (products) => {
   const response = await axios.post(

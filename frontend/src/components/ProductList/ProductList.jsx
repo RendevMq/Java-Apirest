@@ -23,7 +23,7 @@ const ProductList = ({
 
     // Update the order in the backend
     try {
-      await axios.post(`${API_BASE_URL}/product/update-order`, items);
+      await updateProductOrder(items);
     } catch (error) {
       console.error("Failed to update product order", error);
       // Optionally, revert the local state if the API call fails
