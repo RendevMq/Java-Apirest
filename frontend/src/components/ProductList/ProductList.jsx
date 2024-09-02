@@ -17,14 +17,12 @@ const ProductList = ({
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
 
-    console.log(items);
-
     // Update the local state
     onReorderProducts(items);
 
     // Update the order in the backend
     try {
-      await axios.post("/product/update-order", items);
+      await axios.post(`${API_BASE_URL}/product/update-order`, items);
     } catch (error) {
       console.error("Failed to update product order", error);
       // Optionally, revert the local state if the API call fails

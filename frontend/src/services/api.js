@@ -56,7 +56,14 @@ export const deleteProduct = async (id) => {
   return response.json();
 };
 
-// export const updateProductOrder = async (products) => {
-//   const response = await axios.post("/product/update-order", products);
-//   return response.data;
-// };
+import axios from "axios";
+
+// ... other API methods
+
+export const updateProductOrder = async (products) => {
+  const response = await axios.post(
+    `${API_BASE_URL}/product/update-order`,
+    products
+  );
+  return response.data;
+};
