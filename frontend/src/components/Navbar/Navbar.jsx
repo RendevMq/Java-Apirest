@@ -7,7 +7,7 @@ const Navbar = ({ theme, toggleTheme }) => {
       <div className={styles.logo}>
         RENDEVMQ
         <a
-          href="https://github.com/RendevMq"
+          href="https://github.com/RendevMq/Java-Apirest"
           target="_blank"
           rel="noopener noreferrer"
           className={styles.sourceCodeBtn}
