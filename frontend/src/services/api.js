@@ -56,7 +56,7 @@ export const deleteProduct = async (id) => {
   return response.json();
 };
 
-export const updateProductOrder = async (products) => {
-  const response = await axios.post("/product/update-order", products);
-  return response.data;
-};
+// export const updateProductOrder = async (products) => {
+//   const response = await axios.post("/product/update-order", products);
+//   return response.data;
+// };
