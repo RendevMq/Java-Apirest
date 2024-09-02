@@ -16,6 +16,8 @@ const ProductList = ({
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
 
+    console.log(items);
+
     // Update the local state
     onReorderProducts(items);
 
