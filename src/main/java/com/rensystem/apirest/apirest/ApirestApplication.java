@@ -12,13 +12,14 @@ public class ApirestApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ApirestApplication.class, args);
 	}
+	String url = dotenv.get("SPRING_URL");
 
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedOrigins("https://java-apirest-crud-railway.vercel.app").allowedMethods("*").allowedHeaders("*");
+				registry.addMapping("/**").allowedOrigins(url).allowedMethods("*").allowedHeaders("*");
 			}
 		};
 	}
