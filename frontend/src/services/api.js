@@ -56,8 +56,6 @@ export const deleteProduct = async (id) => {
   return response.json();
 };
 
-import axios from "axios";
-
 // ... other API methods
 
 export const updateProductOrder = async (products) => {
