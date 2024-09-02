@@ -1,68 +1,80 @@
 package com.rensystem.apirest.apirest.Controllers;
 
-import org.springframework.web.bind.annotation.RestController;
-
+import com.rensystem.apirest.apirest.Entities.Product;
 import com.rensystem.apirest.apirest.Repositories.ProductRepository;
+import com.rensystem.apirest.apirest.dto.ProductDTO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
-import com.rensystem.apirest.apirest.Entities.Product;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/product")
-//Con esas 2 lineas ya tenemos disponible /productos
-
 public class ProductController {
 
-    @Autowired //inyectamos una instancia en nuestro repositorio.
+    @Autowired
     private ProductRepository productRepository;
 
-    //===============METODOS HTTP===============//
-    //TRAEMOS INFORMACION
+    // Convierte un Product en un ProductDTO
+    private ProductDTO convertToDTO(Product product) {
+        ProductDTO dto = new ProductDTO();
+        dto.setId(product.getId());
+        dto.setNombre(product.getNombre());
+        dto.setPrecio(product.getPrecio());
+        return dto;
+    }
+
+    // Convierte un ProductDTO en un Product
+    private Product convertToEntity(ProductDTO dto) {
+        Product product = new Product();
+        product.setId(dto.getId());
+        product.setNombre(dto.getNombre());
+        product.setPrecio(dto.getPrecio());
+        return product;
+    }
+
     @GetMapping
-    public List<Product> getAllProducts(){
-        return productRepository.findAll(); //Traemos todos los productos del repositorio
+    public ResponseEntity<List<ProductDTO>> getAllProducts() {
+        List<Product> products = productRepository.findAll();
+        List<ProductDTO> productDTOs = products.stream().map(this::convertToDTO).collect(Collectors.toList());
+        return ResponseEntity.ok(productDTOs);
     }
 
-    @GetMapping("/{id}") //reciba en la barra id
-    public Product getProductByID(@PathVariable Long id){
-        return productRepository.findById(id)
-        .orElseThrow(()-> new RuntimeException("No se encontro el producto con el ID: " + id));
+    @GetMapping("/{id}")
+    public ResponseEntity<ProductDTO> getProductByID(@PathVariable Long id) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("No se encontró el producto con el ID: " + id));
+        return ResponseEntity.ok(convertToDTO(product));
     }
-
 
     @PostMapping
-    public Product createProduct(@RequestBody Product producto){
-        return productRepository.save(producto);
+    public ResponseEntity<ProductDTO> createProduct(@RequestBody ProductDTO productDTO) {
+        Product product = convertToEntity(productDTO);
+        Product createdProduct = productRepository.save(product);
+        return ResponseEntity.status(201).body(convertToDTO(createdProduct)); // 201 Created
     }
 
     @PutMapping("/{id}")
-    public Product updateProduct(@PathVariable Long id ,@RequestBody Product detallesProducto ) {
+    public ResponseEntity<ProductDTO> updateProduct(@PathVariable Long id, @RequestBody ProductDTO productDTO) {
         Product productFinded = productRepository.findById(id)
-        .orElseThrow(()-> new RuntimeException("No se encontro el producto con el ID: " + id));
+                .orElseThrow(() -> new RuntimeException("No se encontró el producto con el ID: " + id));
 
-        productFinded.setNombre(detallesProducto.getNombre());
-        productFinded.setPrecio(detallesProducto.getPrecio());
+        productFinded.setNombre(productDTO.getNombre());
+        productFinded.setPrecio(productDTO.getPrecio());
 
-        return productRepository.save(productFinded);
+        Product updatedProduct = productRepository.save(productFinded);
+        return ResponseEntity.ok(convertToDTO(updatedProduct));
     }
-    
+
     @DeleteMapping("/{id}")
-    public String deleteProduct(@PathVariable Long id){
+    public ResponseEntity<?> deleteProduct(@PathVariable Long id) {
         Product productFinded = productRepository.findById(id)
-        .orElseThrow(()-> new RuntimeException("No se encontro el producto con el ID: " + id));
+                .orElseThrow(() -> new RuntimeException("No se encontró el producto con el ID: " + id));
 
         productRepository.delete(productFinded);
-        return "El producto con el ID: " + id + " fue eliminado correctamente";
-    }
 
+        return ResponseEntity.ok().body("{\"message\": \"El producto con el ID: " + id + " fue eliminado correctamente\"}");
+    }
 }
