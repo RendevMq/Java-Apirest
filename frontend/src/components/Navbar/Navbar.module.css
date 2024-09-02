@@ -17,7 +17,7 @@
     font-weight: bold;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 30px;
   }
 
 .sourceCodeBtn {
@@ -27,10 +27,10 @@
   color: #fff; /* Texto blanco */
   border: 2px solid #333; /* Borde oscuro */
   border-radius: 5px;
-  padding: 8px 12px;
+  padding: 4px 12px;
   text-decoration: none; /* Quitar subrayado del enlace */
   transition: background-color 0.3s, border-color 0.3s, transform 0.3s;
-  font-size: 1em;
+  font-size: 0.8em;
   font-weight: bold;
 }
 
@@ -38,7 +38,7 @@
   background-color: #fff; /* Fondo blanco en hover */
   color: #333; /* Texto oscuro en hover */
   border-color: #fff; /* Borde blanco en hover */
-  transform: scale(1.05); /* Efecto de aumento en hover */
+  transform: scale(1.03); /* Efecto de aumento en hover */
 }
 
 .buttonText {
@@ -89,21 +89,3 @@
   .toggleCheckbox:checked + .toggleLabel:before {
     transform: translateX(26px);
   }
-  .fork-btn-inner {
-    line-height: 1.4em !important;
-    background-color: #122142c1 !important;
-    padding: 0.25rem 1.1rem !important;
-    vertical-align: middle !important;
-    text-align: center !important;
-    border-color: #ffffff9b !important;
-  }
-  
-  .fork-btn-inner:hover {
-    transform: translateY(-2px) !important;
-    background-color: #051b49 !important;
-    border-color: #ffffff !important;
-  }
-  .fork-btn-inner::after {
-    display: none !important;
-  }
-  
