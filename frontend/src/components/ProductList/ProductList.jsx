@@ -4,7 +4,6 @@ import { GripVertical } from "lucide-react";
 import styles from "./ProductList.module.css";
 import axios from "axios";
 import { updateProductOrder } from "../../services/api";
-const API_BASE_URL = "https://javaapirestcrudrailway-production.up.railway.app";
 
 const ProductList = ({
   products,
@@ -19,15 +18,15 @@ const ProductList = ({
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
 
-    // Update the local state
+    // Actualizamos el estado local
     onReorderProducts(items);
 
-    // Update the order in the backend
+    // Actualizamos el orden en el backend
     try {
       await updateProductOrder(items);
     } catch (error) {
-      console.error("Failed to update product order", error);
-      // Optionally, revert the local state if the API call fails
+      console.error("Error al actualizar el orden de productos", error);
+      // Opcionalmente, revertimos el estado local si la llamada a la API falla
     }
   };
 
