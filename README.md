@@ -9,7 +9,7 @@ El frontend está desarrollado con React.js y desplegado en Vercel.
 ## Prueba - Despliegue
 
 <div align="center">
-  <img src="https://github.com/RendevMq/MyGIFS/blob/main/CRUD.gif?raw=true" width="700" alt="Final Result">
+  <img src="https://raw.githubusercontent.com/RendevMq/MyGIFS/main/gifjavaapirest.gif" width="700" alt="Final Result">
 </div>
 
 
