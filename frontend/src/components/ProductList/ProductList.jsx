@@ -19,12 +19,11 @@ const ProductList = ({
     // Actualizar el estado local con el nuevo orden
     onReorderProducts(items);
 
+    // Extraer solo los IDs en el nuevo orden
+    const orderedProductIds = items.map((item) => item.id);
+
     // Enviar el nuevo orden al servidor
-    const orderedProducts = items.map((item, index) => ({
-      ...item,
-      orden: index,
-    }));
-    await updateProductOrder(orderedProducts);
+    await updateProductOrder(orderedProductIds);
   };
 
   console.log("Products:", products);

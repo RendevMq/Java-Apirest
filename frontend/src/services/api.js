@@ -7,7 +7,7 @@ export const getAllProducts = async () => {
   if (!response.ok) {
     throw new Error("Failed to fetch products");
   }
-  return response.json();
+  return response.json(); // Los productos deberían ya estar en el orden correcto gracias a la lógica en el backend
 };
 
 export const getProductById = async (id) => {
@@ -56,13 +56,13 @@ export const deleteProduct = async (id) => {
   return response.json();
 };
 
-export const updateProductOrder = async (products) => {
+export const updateProductOrder = async (productIds) => {
   const response = await fetch(`${API_BASE_URL}/product/order`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(products),
+    body: JSON.stringify(productIds),
   });
   if (!response.ok) {
     throw new Error("Failed to update product order");
