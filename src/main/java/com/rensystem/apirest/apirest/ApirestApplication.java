@@ -22,7 +22,7 @@ public class ApirestApplication {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("https://java-apirest-crud-railway.vercel.app")
                         .allowedOrigins(url)
-                        .allowedMethods("*");
+                        .allowedMethods("*").allowedHeaders("*");;
             }
         };
     }
