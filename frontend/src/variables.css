@@ -1,0 +1,26 @@
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --background-color-light: #ffffff;
+    --background-color-dark: #242424;
+    --text-color-light: #333333;
+    --text-color-dark: #f0f0f0;
+    --transition-duration: 0.3s;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    transition: background-color var(--transition-duration), color var(--transition-duration);
+  }
+  
+  .light-theme {
+    background-color: var(--background-color-light);
+    color: var(--text-color-light);
+  }
+  
+  .dark-theme {
+    background-color: var(--background-color-dark);
+    color: var(--text-color-dark);
+  }
